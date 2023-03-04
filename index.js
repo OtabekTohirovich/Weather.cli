@@ -1,10 +1,15 @@
 import getArg from './helpers/args.js'
+import { getWheather } from './services/api.service.js';
 import { printError, printSuccess , printHelp} from'./services/log.services.js'
-import saveKeyValue from './services/storage.service.js';
+import saveKeyValue, { TOKEN_DICTIONARY } from './services/storage.service.js';
 
 const saveToken = async token =>{
+    if(!token.length){
+        printError("Token doesn't exist")
+        return
+    }
     try {
-        await saveKeyValue('token', token)
+        await saveKeyValue(TOKEN_DICTIONARY.token, token)
         printSuccess("Token was saved")
     } catch (error) {
         printError(error.message)
@@ -25,7 +30,7 @@ const startCLI = ()=>{
     if (args.t) {
        return saveToken(args.t)
     }
-    //result
+    getWheather('uzbekistan')
 
 }
 

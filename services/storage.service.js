@@ -4,6 +4,11 @@ import fs from 'fs'
 
 const filePath = path.join(os.homedir(), 'wheather-data.json');
 
+export const TOKEN_DICTIONARY = {
+    token: "token",
+    city: 'city'
+}
+
 const saveKeyValue = async (key, value)=>{
     let data = {}
     if(await isExist(filePath)){
