@@ -38,7 +38,6 @@ const getForcast = async () => {
   try {
     const city = process.env.CITY ?? (await getKeyValue(TOKEN_DICTIONARY.city))
     const response = await getWheather(city);
-    console.log(response);
     printWeather(response, getIcon(response.weather[0].icon))
   } catch (error) {
     if (error?.response?.status == 404) {
